@@ -1,0 +1,1 @@
+Requirements 는 User stories style을 선택했습니다.
