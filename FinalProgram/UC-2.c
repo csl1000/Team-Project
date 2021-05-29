@@ -10,28 +10,28 @@ void search(char word[], int cnt[])
 {
 	FILE *fp = NULL;
 	int line = 0;
-	for (int i = 0; i < STRING_SIZE; i++) // 0À¸·Î ¹è¿­ ÃÊ±âÈ­.
+	for (int i = 0; i < STRING_SIZE; i++) // 0ìœ¼ë¡œ ë°°ì—´ ì´ˆê¸°í™”.
 	{
 		cnt[i] = 0;
 	}
 
-	fp = fopen("DiseaseSearch.txt", "r"); // µ¥ÀÌÅÍ ÆÄÀÏÀ» ÀÐ¾îµéÀÓ.
+	fp = fopen("DiseaseSearch.txt", "r"); // ë°ì´í„° íŒŒì¼ì„ ì½ì–´ë“¤ìž„.
 
 	if (fp != NULL)
 	{
 		char buffer[STRING_SIZE];
 
-		while (!feof(fp)) // ¹®¼­ ³¡¿¡ µµ´ÞÇÒ ¶§±îÁö ÀÐÀ½.
+		while (!feof(fp)) // ë¬¸ì„œ ëì— ë„ë‹¬í•  ë•Œê¹Œì§€ ì½ìŒ.
 		{
-			fgets(buffer, sizeof(buffer), fp); // ÇÑÁÙ¾¿ ÀÐ¾îµéÀÓ.
-			char *ptr = strtok(buffer, " "); // °ø¹é ´ÜÀ§·Î ²÷À½. SymptomÀÌ³ª ÀÔ·Â¿¡¼­ °ø¹éÀº _ ·Î ÇßÀ¸¹Ç·Î °ø¹éÀÌ token ´ÜÀ§°¡ µÈ´Ù.
+			fgets(buffer, sizeof(buffer), fp); // í•œì¤„ì”© ì½ì–´ë“¤ìž„.
+			char *ptr = strtok(buffer, " "); // ê³µë°± ë‹¨ìœ„ë¡œ ëŠìŒ. Symptomì´ë‚˜ ìž…ë ¥ì—ì„œ ê³µë°±ì€ _ ë¡œ í–ˆìœ¼ë¯€ë¡œ ê³µë°±ì´ token ë‹¨ìœ„ê°€ ëœë‹¤.
 
 			while (ptr != NULL)
 			{
 				// int com = strcmp(word, ptr);
-				if (strstr(ptr, word)) // ÀÔ·ÂµÈ ´Ü¾î°¡ token¿¡ ÀÖ´ÂÁö È®ÀÎ. ÇØ´ç ´Ü¾î°¡ ¾øÀ¸¸é NULLÀÌ µÇ¾î if¹®ÀÌ ½ÇÇàµÇÁö ¾ÊÀ½. ÇØ´ç ´Ü¾î Á¸Àç ½Ã if¹® ½ÇÇà.
+				if (strstr(ptr, word)) // ìž…ë ¥ëœ ë‹¨ì–´ê°€ tokenì— ìžˆëŠ”ì§€ í™•ì¸. í•´ë‹¹ ë‹¨ì–´ê°€ ì—†ìœ¼ë©´ NULLì´ ë˜ì–´ ifë¬¸ì´ ì‹¤í–‰ë˜ì§€ ì•ŠìŒ. í•´ë‹¹ ë‹¨ì–´ ì¡´ìž¬ ì‹œ ifë¬¸ ì‹¤í–‰.
 				{
-					cnt[line]++; // ÇØ´ç ´Ü¾î°¡ Á¸ÀçÇÒ ½Ã 0ÀÌ µÈ´Ù. ±×¸®ÇÏ¿© ÇØ´ç ÁÙ¿¡ ÇØ´ç ´Ü¾î°¡ ÀÖ´ÂÁö È®ÀÎÇÏ´Â cnt¸¦ Áõ°¡½ÃÅ²´Ù. ÀÌ¸¦Å×¸é 1¹øÂ° ÁÙ¿¡ ÀÖÀ» °æ¿ì, cnt[0]ÀÌ 1 Áõ°¡.
+					cnt[line]++; // í•´ë‹¹ ë‹¨ì–´ê°€ ì¡´ìž¬í•  ì‹œ 0ì´ ëœë‹¤. ê·¸ë¦¬í•˜ì—¬ í•´ë‹¹ ì¤„ì— í•´ë‹¹ ë‹¨ì–´ê°€ ìžˆëŠ”ì§€ í™•ì¸í•˜ëŠ” cntë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤. ì´ë¥¼í…Œë©´ 1ë²ˆì§¸ ì¤„ì— ìžˆì„ ê²½ìš°, cnt[0]ì´ 1 ì¦ê°€.
 
 				}
 				ptr = strtok(NULL, " ");
@@ -40,7 +40,7 @@ void search(char word[], int cnt[])
 
 			}
 
-			line++; // ÁÙÀ» Áõ°¡.
+			line++; // ì¤„ì„ ì¦ê°€.
 		}
 	}
 
@@ -57,7 +57,7 @@ int result(int cnt[])
 
 	max = cnt[0];
 
-	for (int i = 0; i < STRING_SIZE; i++) // cnt ¹è¿­¿¡¼­ °¡Àå Å« ¼ö¸¦ Ã£À½.
+	for (int i = 0; i < STRING_SIZE; i++) // cnt ë°°ì—´ì—ì„œ ê°€ìž¥ í° ìˆ˜ë¥¼ ì°¾ìŒ.
 	{
 		if (max < cnt[i])
 		{
@@ -71,12 +71,12 @@ int result(int cnt[])
 
 	while (!feof(fp))
 	{
-		readByte = fgets(buffer, sizeof(buffer), fp); // 1ÁÙ¾¿ ÀÐÀ½. readByte¿¡ ÀúÀå.
-		if (cnt[j] == max) // cnt Áß maxÀÎ °ªÀ» Ãâ·Â. Áï, ¿¬°ü¼ºÀÌ °¡Àå Å« °á°ú¸¦ Ãâ·Â.
+		readByte = fgets(buffer, sizeof(buffer), fp); // 1ì¤„ì”© ì½ìŒ. readByteì— ì €ìž¥.
+		if (cnt[j] == max) // cnt ì¤‘ maxì¸ ê°’ì„ ì¶œë ¥. ì¦‰, ì—°ê´€ì„±ì´ ê°€ìž¥ í° ê²°ê³¼ë¥¼ ì¶œë ¥.
 		{
-			strcpy(tempStr, readByte); // tempStr¿¡ ÇØ´ç ÁÙÀ» º¹»ç.
-			char *ptr = strtok(buffer, " "); // ÇØ´ç ÁÙ¿¡´Â º´¸í°ú Áõ»óµéÀÌ ÀÖÀ¸¹Ç·Î ÇÑ¹ø °ø¹é ´ÜÀ§·Î ²÷¾î¼­ Ã³À½¿¡ ¿À´Â º´¸íÀ» ptr¿¡ ÀúÀå.
-			printf("°á°ú : %s\n", ptr); // ±×¸®°í ptr¿¡ ÀÖ´Â º´¸íÀ» Ãâ·Â.
+			strcpy(tempStr, readByte); // tempStrì— í•´ë‹¹ ì¤„ì„ ë³µì‚¬.
+			char *ptr = strtok(buffer, " "); // í•´ë‹¹ ì¤„ì—ëŠ” ë³‘ëª…ê³¼ ì¦ìƒë“¤ì´ ìžˆìœ¼ë¯€ë¡œ í•œë²ˆ ê³µë°± ë‹¨ìœ„ë¡œ ëŠì–´ì„œ ì²˜ìŒì— ì˜¤ëŠ” ë³‘ëª…ì„ ptrì— ì €ìž¥.
+			printf("ê²°ê³¼ : %s\n", ptr); // ê·¸ë¦¬ê³  ptrì— ìžˆëŠ” ë³‘ëª…ì„ ì¶œë ¥.
 			fclose(fp);
 			return 0;
 		}
@@ -88,15 +88,15 @@ int result(int cnt[])
 
 int main()
 {
-	int a[STRING_SIZE]; // ÀÔ·ÂÇÑ 1¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
-	int b[STRING_SIZE]; // ÀÔ·ÂÇÑ 2¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
-	int c[STRING_SIZE]; // ÀÔ·ÂÇÑ 3¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
+	int a[STRING_SIZE]; // ìž…ë ¥í•œ 1ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
+	int b[STRING_SIZE]; // ìž…ë ¥í•œ 2ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
+	int c[STRING_SIZE]; // ìž…ë ¥í•œ 3ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
 
-	char word1[MAX_WORD]; // ÀÔ·ÂµÉ 1¹øÂ° Áõ»ó.
-	char word2[MAX_WORD]; // ÀÔ·ÂµÉ 2¹øÂ° Áõ»ó.
-	char word3[MAX_WORD]; // ÀÔ·ÂµÉ 3¹øÂ° Áõ»ó.
+	char word1[MAX_WORD]; // ìž…ë ¥ë  1ë²ˆì§¸ ì¦ìƒ.
+	char word2[MAX_WORD]; // ìž…ë ¥ë  2ë²ˆì§¸ ì¦ìƒ.
+	char word3[MAX_WORD]; // ìž…ë ¥ë  3ë²ˆì§¸ ì¦ìƒ.
 
-	printf("<ÀÔ·ÂÀ» ³Ñ±â·Á¸é 0À» ÀÔ·ÂÇÏ°í ¿£ÅÍ¸¦ ÃÄÁÖ¼¼¿ä>.\n");
+	printf("<ìž…ë ¥ì„ ë„˜ê¸°ë ¤ë©´ 0ì„ ìž…ë ¥í•˜ê³  ì—”í„°ë¥¼ ì³ì£¼ì„¸ìš”.>\n");
 
 	printf("\n");
 
@@ -117,23 +117,23 @@ int main()
 
 	int final[STRING_SIZE];
 
-	for (int i = 0; i < STRING_SIZE; i++) // °¢ Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­À» 0À¸·Î ÃÊ±âÈ­.
+	for (int i = 0; i < STRING_SIZE; i++) // ê° ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´ì„ 0ìœ¼ë¡œ ì´ˆê¸°í™”.
 	{
 		a[i] = 0;
 		b[i] = 0;
 		c[i] = 0;
 	}
 
-	search(word1, &a); // 1¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
-	search(word2, &b); // 2¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
-	search(word3, &c); // 3¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
+	search(word1, &a); // 1ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
+	search(word2, &b); // 2ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
+	search(word3, &c); // 3ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
 
-	for (int i = 0; i < STRING_SIZE; i++)  // 3°¡Áö cnt¿¡ ´ëÇØ ÇÕÃÄÁø cnt ¹è¿­ÀÎ final.
+	for (int i = 0; i < STRING_SIZE; i++)  // 3ê°€ì§€ cntì— ëŒ€í•´ í•©ì³ì§„ cnt ë°°ì—´ì¸ final.
 	{
 		final[i] = a[i] + b[i] + c[i];
 	}
 
-	result(final); // final ¹è¿­À» ³Ñ°ÜÁÖ¾î¼­ °¡Àå ¿¬°ü¼º ³ôÀº ÁÙÀ» Ãâ·Â.
+	result(final); // final ë°°ì—´ì„ ë„˜ê²¨ì£¼ì–´ì„œ ê°€ìž¥ ì—°ê´€ì„± ë†’ì€ ì¤„ì„ ì¶œë ¥.
 
 	return 0;
 }
