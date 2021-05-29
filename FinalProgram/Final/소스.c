@@ -16,7 +16,7 @@ void UserLogin(char[]);
 void DoctorLogin(char[]);
 void Login();
 
-char userID[20]; // userÀÇ ¾ÆÀÌµð ÀúÀå°ø°£
+char userID[20]; // userì˜ ì•„ì´ë”” ì €ìž¥ê³µê°„
 
 
 
@@ -48,57 +48,57 @@ void Login();
 
 void Login()
 {
-	int LoginTimes = 0;    //·Î±×ÀÎ ½ÇÆÐ È½¼ö Ã¼Å©,5¹ø ÀÌ»ó ·Î±×ÀÎ ½ÇÆÐ->Á¾·á
-	int LoginNumber = 0;    //·Î±×ÀÎ ¼º°ø Ã¼Å©,·Î±×ÀÎ ¼º°ø->LoginNumber=1
-	char ID[100];    //»ç¿ëÀÚ ÀÔ·ÂÇÑ ID,Password ÀúÀå
+	int LoginTimes = 0;    //ë¡œê·¸ì¸ ì‹¤íŒ¨ íšŸìˆ˜ ì²´í¬,5ë²ˆ ì´ìƒ ë¡œê·¸ì¸ ì‹¤íŒ¨->ì¢…ë£Œ
+	int LoginNumber = 0;    //ë¡œê·¸ì¸ ì„±ê³µ ì²´í¬,ë¡œê·¸ì¸ ì„±ê³µ->LoginNumber=1
+	char ID[100];    //ì‚¬ìš©ìž ìž…ë ¥í•œ ID,Password ì €ìž¥
 	char PW[100];
-	char UserID[1000];    //ÀúÀåµÈ µ¥ÀÌÅÍ¿¡ È¯ÀÚ ÀÇ»ç ID,Password¸¦ °¡Á®¿È
+	char UserID[1000];    //ì €ìž¥ëœ ë°ì´í„°ì— í™˜ìž ì˜ì‚¬ ID,Passwordë¥¼ ê°€ì ¸ì˜´
 	char UserPW[1000];
 	char DoctorID[1000];
 	char DoctorPW[1000];
-	FILE* fp1, * fp2;    //ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ Read
-	fp1 = fopen("User.txt", "r");    //È¯ÀÚ ·Î±×ÀÎ µ¥ÀÌÅÍ
-	fp2 = fopen("Doctor.txt", "r");    //ÀÇ»ç ·Î±×ÀÎ µ¥ÀÌÅÍ
+	FILE* fp1, * fp2;    //ì €ìž¥ëœ ë°ì´í„°ë¥¼ Read
+	fp1 = fopen("User.txt", "r");    //í™˜ìž ë¡œê·¸ì¸ ë°ì´í„°
+	fp2 = fopen("Doctor.txt", "r");    //ì˜ì‚¬ ë¡œê·¸ì¸ ë°ì´í„°
 	while (LoginNumber == 0)
 	{
-		printf("ID:");    //»ç¿ëÀÚ ID,PasswordÀÔ·Â
+		printf("ID:");    //ì‚¬ìš©ìž ID,Passwordìž…ë ¥
 		scanf(" %s", ID);
 		printf("PW:");
 		scanf(" %s", PW);
-		while (strcmp(UserID, "1") != 0 && strcmp(DoctorID, "1") != 0)    //ÀúÀåµÈ µ¥ÀÌÅÍ¿¡ ÀÔ·ÂÇÑ ID,Password Ã¼Å©
+		while (strcmp(UserID, "1") != 0 && strcmp(DoctorID, "1") != 0)    //ì €ìž¥ëœ ë°ì´í„°ì— ìž…ë ¥í•œ ID,Password ì²´í¬
 		{
 			fscanf(fp1, "%s", UserID);
 			fscanf(fp1, "%s", UserPW);
 			fscanf(fp2, "%s", DoctorID);
 			fscanf(fp2, "%s", DoctorPW);
-			if (strcmp(UserID, ID) == 0 && strcmp(UserPW, PW) == 0)    //ÀÔ·ÂÇÑ ID,Password°¡ ÀúÀåµÈ µ¥ÀÌÅÍ¶û ÀÏÄ¡ÇÏ¸é Login
+			if (strcmp(UserID, ID) == 0 && strcmp(UserPW, PW) == 0)    //ìž…ë ¥í•œ ID,Passwordê°€ ì €ìž¥ëœ ë°ì´í„°ëž‘ ì¼ì¹˜í•˜ë©´ Login
 			{
 				printf("\nYou have successfully landing system...\n");
-				UserLogin(ID);    //È¯ÀÚ ·Î±×ÀÎ ¼º°ø
+				UserLogin(ID);    //í™˜ìž ë¡œê·¸ì¸ ì„±ê³µ
 				LoginNumber = 1;
 				break;
 			}
 			if (strcmp(DoctorID, ID) == 0 && strcmp(DoctorPW, PW) == 0)
 			{
 				printf("\nYou have successfully landing system...\n");
-				DoctorLogin(ID);    //ÀÇ»ç ·Î±×ÀÎ ¼º°ø
+				DoctorLogin(ID);    //ì˜ì‚¬ ë¡œê·¸ì¸ ì„±ê³µ
 				LoginNumber = 1;
 				break;
 			}
 		}
-		if (strcmp(UserID, "1") == 0 || strcmp(DoctorID, "1") == 0)    //ÀÔ·ÂÇÑ ID,Password°¡ ÀúÀåµÈ µ¥ÀÌÅÍ¶û ºÒÀÏÄ¡->·Î±×ÀÎ ½ÇÆÐ->´Ù½Ã ÀÔ·Â
+		if (strcmp(UserID, "1") == 0 || strcmp(DoctorID, "1") == 0)    //ìž…ë ¥í•œ ID,Passwordê°€ ì €ìž¥ëœ ë°ì´í„°ëž‘ ë¶ˆì¼ì¹˜->ë¡œê·¸ì¸ ì‹¤íŒ¨->ë‹¤ì‹œ ìž…ë ¥
 		{
 			printf("\nLOGIN ERROR:Wrong ID,PW.\n");
 			printf("Please try again...\n\n");
-			LoginTimes++;    //·Î±×ÀÎ ½ÇÆÐ È½¼ö +1
-			memset(UserID, 0, sizeof(UserID));    //ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ ´Ù½Ã Read
+			LoginTimes++;    //ë¡œê·¸ì¸ ì‹¤íŒ¨ íšŸìˆ˜ +1
+			memset(UserID, 0, sizeof(UserID));    //ì €ìž¥ëœ ë°ì´í„°ë¥¼ ë‹¤ì‹œ Read
 			memset(UserPW, 0, sizeof(UserPW));
 			memset(DoctorID, 0, sizeof(DoctorID));
 			memset(DoctorPW, 0, sizeof(DoctorPW));
 			rewind(fp1);
 			rewind(fp2);
 		}
-		if (LoginTimes > 4)    //·Î±×ÀÎ ½ÇÆÐ È½¼ö 5¹ø ÀÌ»ó->Á¾·á
+		if (LoginTimes > 4)    //ë¡œê·¸ì¸ ì‹¤íŒ¨ íšŸìˆ˜ 5ë²ˆ ì´ìƒ->ì¢…ë£Œ
 		{
 			printf("\nEnter the wrong ID or PW too many times.\n");
 			printf("EXIT...");
@@ -125,28 +125,28 @@ void search(char word[], int cnt[])
 {
 	FILE* fp = NULL;
 	int line = 0;
-	for (int i = 0; i < STRING_SIZE; i++) // 0À¸·Î ¹è¿­ ÃÊ±âÈ­.
+	for (int i = 0; i < STRING_SIZE; i++) // 0ìœ¼ë¡œ ë°°ì—´ ì´ˆê¸°í™”.
 	{
 		cnt[i] = 0;
 	}
 
-	fp = fopen("DiseaseSearch.txt", "r"); // µ¥ÀÌÅÍ ÆÄÀÏÀ» ÀÐ¾îµéÀÓ.
+	fp = fopen("DiseaseSearch.txt", "r"); // ë°ì´í„° íŒŒì¼ì„ ì½ì–´ë“¤ìž„.
 
 	if (fp != NULL)
 	{
 		char buffer[STRING_SIZE];
 
-		while (!feof(fp)) // ¹®¼­ ³¡¿¡ µµ´ÞÇÒ ¶§±îÁö ÀÐÀ½.s
+		while (!feof(fp)) // ë¬¸ì„œ ëì— ë„ë‹¬í•  ë•Œê¹Œì§€ ì½ìŒ.s
 		{
-			fgets(buffer, sizeof(buffer), fp); // ÇÑÁÙ¾¿ ÀÐ¾îµéÀÓ.
-			char* ptr = strtok(buffer, " "); // °ø¹é ´ÜÀ§·Î ²÷À½. SymptomÀÌ³ª ÀÔ·Â¿¡¼­ °ø¹éÀº _ ·Î ÇßÀ¸¹Ç·Î °ø¹éÀÌ token ´ÜÀ§°¡ µÈ´Ù.
+			fgets(buffer, sizeof(buffer), fp); // í•œì¤„ì”© ì½ì–´ë“¤ìž„.
+			char* ptr = strtok(buffer, " "); // ê³µë°± ë‹¨ìœ„ë¡œ ëŠìŒ. Symptomì´ë‚˜ ìž…ë ¥ì—ì„œ ê³µë°±ì€ _ ë¡œ í–ˆìœ¼ë¯€ë¡œ ê³µë°±ì´ token ë‹¨ìœ„ê°€ ëœë‹¤.
 
 			while (ptr != NULL)
 			{
 				// int com = strcmp(word, ptr);
-				if (strstr(ptr, word)) // ÀÔ·ÂµÈ ´Ü¾î°¡ token¿¡ ÀÖ´ÂÁö È®ÀÎ. ÇØ´ç ´Ü¾î°¡ ¾øÀ¸¸é NULLÀÌ µÇ¾î if¹®ÀÌ ½ÇÇàµÇÁö ¾ÊÀ½. ÇØ´ç ´Ü¾î Á¸Àç ½Ã if¹® ½ÇÇà.
+				if (strstr(ptr, word)) // ìž…ë ¥ëœ ë‹¨ì–´ê°€ tokenì— ìžˆëŠ”ì§€ í™•ì¸. í•´ë‹¹ ë‹¨ì–´ê°€ ì—†ìœ¼ë©´ NULLì´ ë˜ì–´ ifë¬¸ì´ ì‹¤í–‰ë˜ì§€ ì•ŠìŒ. í•´ë‹¹ ë‹¨ì–´ ì¡´ìž¬ ì‹œ ifë¬¸ ì‹¤í–‰.
 				{
-					cnt[line]++; // ÇØ´ç ´Ü¾î°¡ Á¸ÀçÇÒ ½Ã 0ÀÌ µÈ´Ù. ±×¸®ÇÏ¿© ÇØ´ç ÁÙ¿¡ ÇØ´ç ´Ü¾î°¡ ÀÖ´ÂÁö È®ÀÎÇÏ´Â cnt¸¦ Áõ°¡½ÃÅ²´Ù. ÀÌ¸¦Å×¸é 1¹øÂ° ÁÙ¿¡ ÀÖÀ» °æ¿ì, cnt[0]ÀÌ 1 Áõ°¡.
+					cnt[line]++; // í•´ë‹¹ ë‹¨ì–´ê°€ ì¡´ìž¬í•  ì‹œ 0ì´ ëœë‹¤. ê·¸ë¦¬í•˜ì—¬ í•´ë‹¹ ì¤„ì— í•´ë‹¹ ë‹¨ì–´ê°€ ìžˆëŠ”ì§€ í™•ì¸í•˜ëŠ” cntë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤. ì´ë¥¼í…Œë©´ 1ë²ˆì§¸ ì¤„ì— ìžˆì„ ê²½ìš°, cnt[0]ì´ 1 ì¦ê°€.
 
 				}
 				ptr = strtok(NULL, " ");
@@ -155,7 +155,7 @@ void search(char word[], int cnt[])
 
 			}
 
-			line++; // ÁÙÀ» Áõ°¡.
+			line++; // ì¤„ì„ ì¦ê°€.
 		}
 	}
 
@@ -172,7 +172,7 @@ int result(int cnt[])
 
 	max = cnt[0];
 
-	for (int i = 0; i < STRING_SIZE; i++) // cnt ¹è¿­¿¡¼­ °¡Àå Å« ¼ö¸¦ Ã£À½.
+	for (int i = 0; i < STRING_SIZE; i++) // cnt ë°°ì—´ì—ì„œ ê°€ìž¥ í° ìˆ˜ë¥¼ ì°¾ìŒ.
 	{
 		if (max < cnt[i])
 		{
@@ -186,12 +186,12 @@ int result(int cnt[])
 
 	while (!feof(fp))
 	{
-		readByte = fgets(buffer, sizeof(buffer), fp); // 1ÁÙ¾¿ ÀÐÀ½. readByte¿¡ ÀúÀå.
-		if (cnt[j] == max) // cnt Áß maxÀÎ °ªÀ» Ãâ·Â. Áï, ¿¬°ü¼ºÀÌ °¡Àå Å« °á°ú¸¦ Ãâ·Â.
+		readByte = fgets(buffer, sizeof(buffer), fp); // 1ì¤„ì”© ì½ìŒ. readByteì— ì €ìž¥.
+		if (cnt[j] == max) // cnt ì¤‘ maxì¸ ê°’ì„ ì¶œë ¥. ì¦‰, ì—°ê´€ì„±ì´ ê°€ìž¥ í° ê²°ê³¼ë¥¼ ì¶œë ¥.
 		{
-			strcpy(tempStr, readByte); // tempStr¿¡ ÇØ´ç ÁÙÀ» º¹»ç.
-			char* ptr = strtok(buffer, " "); // ÇØ´ç ÁÙ¿¡´Â º´¸í°ú Áõ»óµéÀÌ ÀÖÀ¸¹Ç·Î ÇÑ¹ø °ø¹é ´ÜÀ§·Î ²÷¾î¼­ Ã³À½¿¡ ¿À´Â º´¸íÀ» ptr¿¡ ÀúÀå.
-			printf("°á°ú : %s\n", ptr); // ±×¸®°í ptr¿¡ ÀÖ´Â º´¸íÀ» Ãâ·Â.
+			strcpy(tempStr, readByte); // tempStrì— í•´ë‹¹ ì¤„ì„ ë³µì‚¬.
+			char* ptr = strtok(buffer, " "); // í•´ë‹¹ ì¤„ì—ëŠ” ë³‘ëª…ê³¼ ì¦ìƒë“¤ì´ ìžˆìœ¼ë¯€ë¡œ í•œë²ˆ ê³µë°± ë‹¨ìœ„ë¡œ ëŠì–´ì„œ ì²˜ìŒì— ì˜¤ëŠ” ë³‘ëª…ì„ ptrì— ì €ìž¥.
+			printf("ê²°ê³¼ : %s\n", ptr); // ê·¸ë¦¬ê³  ptrì— ìžˆëŠ” ë³‘ëª…ì„ ì¶œë ¥.
 			fclose(fp);
 			return 0;
 		}
@@ -205,10 +205,10 @@ int result(int cnt[])
 const char* findDoctor(int sort_kind, User_data user)
 {
 	Doctor_data doctor[20];
-	int doctor_index = 0; // doctor¹è¿­ÀÇ index
-	char file_line[50]; // ÆÄÀÏ ÀÐÀ» ¶§ 1ÁÙÀ» ¹Þ¾ÆµéÀÌ´Â º¯¼ö
+	int doctor_index = 0; // doctorë°°ì—´ì˜ index
+	char file_line[50]; // íŒŒì¼ ì½ì„ ë•Œ 1ì¤„ì„ ë°›ì•„ë“¤ì´ëŠ” ë³€ìˆ˜
 	int counter = 0;
-	int minimum = 0; // Cost, Distance ºñ±³¸¦ À§ÇÑ º¯¼ö
+	int minimum = 0; // Cost, Distance ë¹„êµë¥¼ ìœ„í•œ ë³€ìˆ˜
 	int index = 0; 
 	int distance[20];
 	char doctor_name[20];
@@ -216,16 +216,16 @@ const char* findDoctor(int sort_kind, User_data user)
 
 	FILE* fp;
 	fp = fopen("doctorinfo.txt", "r");
-	if (fp == NULL) // ÆÄÀÏÀÌ ¾øÀ» ¶§ ¿¹¿ÜÃ³¸®
+	if (fp == NULL) // íŒŒì¼ì´ ì—†ì„ ë•Œ ì˜ˆì™¸ì²˜ë¦¬
 	{
 		printf("Can't find file\n");
 		exit(1);
 	}
 	else
 	{
-		while (!feof(fp)) // ÆÄÀÏ ³¡±îÁö ÀÐ¾î³¿
+		while (!feof(fp)) // íŒŒì¼ ëê¹Œì§€ ì½ì–´ëƒ„
 		{
-			// ÆÄÀÏ Çü½ÄÀº °íÁ¤ÀÓÀ¸·Î ÆÄÀÏ¿¡¼­ 5°¡ÁöÀÇ Á¤º¸¸¦ °¢°¢ doctor ±¸Á¶Ã¼ ¹è¿­¿¡ ÇÑ°³¾¿ »ðÀÔ
+			// íŒŒì¼ í˜•ì‹ì€ ê³ ì •ìž„ìœ¼ë¡œ íŒŒì¼ì—ì„œ 5ê°€ì§€ì˜ ì •ë³´ë¥¼ ê°ê° doctor êµ¬ì¡°ì²´ ë°°ì—´ì— í•œê°œì”© ì‚½ìž…
 			fgets(file_line, 50, fp); 
 			char* temp = strtok(file_line, " ");
 			strcpy(doctor[doctor_index].name, temp);
@@ -238,16 +238,16 @@ const char* findDoctor(int sort_kind, User_data user)
 			temp = strtok(NULL, " ");
 			doctor[doctor_index].cost = atoi(temp);
 
-			doctor_index++; // doctor ¹è¿­¿¡ ´ÙÀ½ ¿ø¼Ò Á¢±Ù
+			doctor_index++; // doctor ë°°ì—´ì— ë‹¤ìŒ ì›ì†Œ ì ‘ê·¼
 		}
 	}
 
 	fclose(fp);
 
-	switch (sort_kind)// ÀÔ·ÂµÈ sort_kind¸¦ ÅëÇØ 3°¡Áö Á¢±Ù ¹æ½Ä Á¦°ø
+	switch (sort_kind)// ìž…ë ¥ëœ sort_kindë¥¼ í†µí•´ 3ê°€ì§€ ì ‘ê·¼ ë°©ì‹ ì œê³µ
 	{
-	case DISTANCE: // °Å¸®¼øÀÏ¶§
-		for (int i = 0; i < doctor_index; i++) // ·çÆ®¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ °Å¸® ºñ±³´Â °¡´ÉÇÔÀ¸·Î(°Å¸®´Â Ç×»ó 0º¸´Ù Å©´Ï) È¯ÀÚ¿Í °¢ ÀÇ»çµéÀÇ °Å¸®¸¦ ±¸ÇÔ
+	case DISTANCE: // ê±°ë¦¬ìˆœì¼ë•Œ
+		for (int i = 0; i < doctor_index; i++) // ë£¨íŠ¸ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ê±°ë¦¬ ë¹„êµëŠ” ê°€ëŠ¥í•¨ìœ¼ë¡œ(ê±°ë¦¬ëŠ” í•­ìƒ 0ë³´ë‹¤ í¬ë‹ˆ) í™˜ìžì™€ ê° ì˜ì‚¬ë“¤ì˜ ê±°ë¦¬ë¥¼ êµ¬í•¨
 		{
 			distance[i] = abs(doctor[i].local_x - user.local_x) * abs(doctor[i].local_x - user.local_x) + abs(doctor[i].local_y - user.local_y) * abs(doctor[i].local_y - user.local_y);
 		}
@@ -255,7 +255,7 @@ const char* findDoctor(int sort_kind, User_data user)
 		minimum = distance[0];
 		for (int i = 0; i < doctor_index; i++)
 		{
-			if (distance[i] < minimum) // ±âÁ¸ ÃÖ¼Ú°ªº¸´Ù °Å¸®°¡ ÀÛ´Ù¸é ±×°ÍÀ¸·Î ÃÖ¼Ú°ª ´ëÃ¼, index°ª ÀúÀå
+			if (distance[i] < minimum) // ê¸°ì¡´ ìµœì†Ÿê°’ë³´ë‹¤ ê±°ë¦¬ê°€ ìž‘ë‹¤ë©´ ê·¸ê²ƒìœ¼ë¡œ ìµœì†Ÿê°’ ëŒ€ì²´, indexê°’ ì €ìž¥
 			{
 				minimum = distance[i];
 				index = i;
@@ -263,18 +263,18 @@ const char* findDoctor(int sort_kind, User_data user)
 		}
 		printf("%s %d %d %c %d\n", doctor[index].name, doctor[index].local_x, doctor[index].local_y, doctor[index].grade, doctor[index].cost);
 		break;
-	case GRADE: // ÆòÁ¡¼øÀÏ¶§
+	case GRADE: // í‰ì ìˆœì¼ë•Œ
 		for (int i = 0; i < doctor_index; i++)
 		{
 			if (doctor[i].grade == 'A')
 			{
 				printf("%s %d %d %c %d\n", doctor[i].name, doctor[i].local_x, doctor[i].local_y, doctor[i].grade, doctor[i].cost);
 				counter++;
-				index = i; // Á¦ÀÏ ³ôÀº ÆòÁ¡ÀÇ ÀÇ»çÀÇ index¸¦ ÀúÀåÇØµÒ
+				index = i; // ì œì¼ ë†’ì€ í‰ì ì˜ ì˜ì‚¬ì˜ indexë¥¼ ì €ìž¥í•´ë‘ 
 			}
 		}
 
-		if (counter == 0) // ¸ðµç ÀÇ»çµéÀÇ ÆòÁ¡ÀÌ A°¡ ¾Æ´Ï¶ó¸é B¸¦ È®ÀÎ ÇÒ ¼ö ÀÖµµ·Ï µµ¿ÍÁÜ
+		if (counter == 0) // ëª¨ë“  ì˜ì‚¬ë“¤ì˜ í‰ì ì´ Aê°€ ì•„ë‹ˆë¼ë©´ Bë¥¼ í™•ì¸ í•  ìˆ˜ ìžˆë„ë¡ ë„ì™€ì¤Œ
 		{
 			for (int i = 0; i < doctor_index; i++)
 			{
@@ -335,7 +335,7 @@ const char* findDoctor(int sort_kind, User_data user)
 			}
 		}
 		break;
-	case COST: // °¡°Ý¼ø, À§ °Å¸®¼ø°ú À¯»çÇÑ ¹æ½Ä
+	case COST: // ê°€ê²©ìˆœ, ìœ„ ê±°ë¦¬ìˆœê³¼ ìœ ì‚¬í•œ ë°©ì‹
 		minimum = doctor[0].cost;
 		for (int i = 0; i < doctor_index; i++)
 		{
@@ -349,36 +349,36 @@ const char* findDoctor(int sort_kind, User_data user)
 		break;
 	}
 
-	strcpy(doctor_name, doctor[index].name); // °á°ú·Î »ý¼ºµÈ  index¸¦ °¡Áö°í ÃÖÀûÀÇ Á¶°ÇÀ» °®´Â ÀÇ»çÀÇ ÀÌ¸§À» º¹»çÇÔ
+	strcpy(doctor_name, doctor[index].name); // ê²°ê³¼ë¡œ ìƒì„±ëœ  indexë¥¼ ê°€ì§€ê³  ìµœì ì˜ ì¡°ê±´ì„ ê°–ëŠ” ì˜ì‚¬ì˜ ì´ë¦„ì„ ë³µì‚¬í•¨
 
 	return doctor_name;
 }
 
 int main()
 {
-	int button = 0; // 1ÀÌ¸é Áõ»ó°Ë»ö, 2¸é ÀÇ·áÁø °Ë»ö
+	int button = 0; // 1ì´ë©´ ì¦ìƒê²€ìƒ‰, 2ë©´ ì˜ë£Œì§„ ê²€ìƒ‰
 
-	int a[STRING_SIZE]; // ÀÔ·ÂÇÑ 1¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
-	int b[STRING_SIZE]; // ÀÔ·ÂÇÑ 2¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
-	int c[STRING_SIZE]; // ÀÔ·ÂÇÑ 3¹øÂ° Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­.
+	int a[STRING_SIZE]; // ìž…ë ¥í•œ 1ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
+	int b[STRING_SIZE]; // ìž…ë ¥í•œ 2ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
+	int c[STRING_SIZE]; // ìž…ë ¥í•œ 3ë²ˆì§¸ ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´.
 
-	char word1[MAX_WORD]; // ÀÔ·ÂµÉ 1¹øÂ° Áõ»ó.
-	char word2[MAX_WORD]; // ÀÔ·ÂµÉ 2¹øÂ° Áõ»ó.
-	char word3[MAX_WORD]; // ÀÔ·ÂµÉ 3¹øÂ° Áõ»ó.
+	char word1[MAX_WORD]; // ìž…ë ¥ë  1ë²ˆì§¸ ì¦ìƒ.
+	char word2[MAX_WORD]; // ìž…ë ¥ë  2ë²ˆì§¸ ì¦ìƒ.
+	char word3[MAX_WORD]; // ìž…ë ¥ë  3ë²ˆì§¸ ì¦ìƒ.
 
 
-	// UC-1 log-in ºÎºÐ
+	// UC-1 log-in ë¶€ë¶„
 	printf("Welcome to Smart Health Prediction System!\n");
 	printf("Please Login first to continue...\n");
 	Login();
 
-	// ¹ØÀ¸·Î´Â UC-2 Áõ»ó°Ë»ö, UC-3 ÀÇ»ç °Ë»ö ºÎºÐ
-	printf("\n 1 : Áõ»ó °Ë»ö, 2 : ÀÇ·áÁø °Ë»ö  ");
+	// ë°‘ìœ¼ë¡œëŠ” UC-2 ì¦ìƒê²€ìƒ‰, UC-3 ì˜ì‚¬ ê²€ìƒ‰ ë¶€ë¶„
+	printf("\n 1 : ì¦ìƒ ê²€ìƒ‰, 2 : ì˜ë£Œì§„ ê²€ìƒ‰  ");
 	scanf_s("%d",&button);
 
 	if (button == 1)
 	{
-		printf("<ÀÔ·ÂÀ» ³Ñ±â·Á¸é 0À» ÀÔ·ÂÇÏ°í ¿£ÅÍ¸¦ ÃÄÁÖ¼¼¿ä>.\n");
+		printf("<ìž…ë ¥ì„ ë„˜ê¸°ë ¤ë©´ 0ì„ ìž…ë ¥í•˜ê³  ì—”í„°ë¥¼ ì³ì£¼ì„¸ìš”.>\n");
 
 		printf("\n");
 
@@ -399,28 +399,28 @@ int main()
 
 		int final[STRING_SIZE];
 
-		for (int i = 0; i < STRING_SIZE; i++) // °¢ Áõ»ó¿¡ ´ëÇÑ cnt ¹è¿­À» 0À¸·Î ÃÊ±âÈ­.
+		for (int i = 0; i < STRING_SIZE; i++) // ê° ì¦ìƒì— ëŒ€í•œ cnt ë°°ì—´ì„ 0ìœ¼ë¡œ ì´ˆê¸°í™”.
 		{
 			a[i] = 0;
 			b[i] = 0;
 			c[i] = 0;
 		}
 
-		search(word1, &a); // 1¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
-		search(word2, &b); // 2¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
-		search(word3, &c); // 3¹øÂ°·Î ÀÔ·ÂµÈ Áõ»ó¿¡ ´ëÇØ °¢ ÁÙ¿¡ ÀÖ´ÂÁö ¿©ºÎ È®ÀÎ.
+		search(word1, &a); // 1ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
+		search(word2, &b); // 2ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
+		search(word3, &c); // 3ë²ˆì§¸ë¡œ ìž…ë ¥ëœ ì¦ìƒì— ëŒ€í•´ ê° ì¤„ì— ìžˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸.
 
-		for (int i = 0; i < STRING_SIZE; i++)  // 3°¡Áö cnt¿¡ ´ëÇØ ÇÕÃÄÁø cnt ¹è¿­ÀÎ final.
+		for (int i = 0; i < STRING_SIZE; i++)  // 3ê°€ì§€ cntì— ëŒ€í•´ í•©ì³ì§„ cnt ë°°ì—´ì¸ final.
 		{
 			final[i] = a[i] + b[i] + c[i];
 		}
 
-		result(final); // final ¹è¿­À» ³Ñ°ÜÁÖ¾î¼­ °¡Àå ¿¬°ü¼º ³ôÀº ÁÙÀ» Ãâ·Â.
+		result(final); // final ë°°ì—´ì„ ë„˜ê²¨ì£¼ì–´ì„œ ê°€ìž¥ ì—°ê´€ì„± ë†’ì€ ì¤„ì„ ì¶œë ¥.
 	}
 	else if (button == 2)
 	{
 		User_data user;
-		if (strcmp(userID, "User1")) // ÀÌ¹Ì ·Î±×ÀÎÀÌ µÇ¾úÀ½À¸·Î ¿¹¿ÜÃ³¸® ÇÊ¿ä ¾øÀ½
+		if (strcmp(userID, "User1")) // ì´ë¯¸ ë¡œê·¸ì¸ì´ ë˜ì—ˆìŒìœ¼ë¡œ ì˜ˆì™¸ì²˜ë¦¬ í•„ìš” ì—†ìŒ
 		{
 			user.local_x = 20;
 			user.local_y = 30;
@@ -441,15 +441,15 @@ int main()
 
 		int sort_kind = 1;
 
-		printf("\n Á¤·Ä ¼ø¼­¸¦ Á¤ÇÏ¼¼¿ä (1 : °Å¸®¼ø, 2 : ÆòÁ¡¼ø, 3 : °¡°Ý¼ø)   : ");
+		printf("\n ì •ë ¬ ìˆœì„œë¥¼ ì •í•˜ì„¸ìš” (1 : ê±°ë¦¬ìˆœ, 2 : í‰ì ìˆœ, 3 : ê°€ê²©ìˆœ)   : ");
 		scanf_s("%d", &sort_kind);
 		;
-		printf("\n°¡Àå ÀûÇÕÇÑ ÀÇ»ç´Â %s ÀÔ´Ï´Ù", findDoctor(sort_kind, user));
-		// ÀÌÈÄ video, audio ¿¬°áÀº Á¦¿ÜÇÞ½À´Ï´Ù.
+		printf("\nê°€ìž¥ ì í•©í•œ ì˜ì‚¬ëŠ” %s ìž…ë‹ˆë‹¤", findDoctor(sort_kind, user));
+		// ì´í›„ video, audio ì—°ê²°ì€ ì œì™¸í–‡ìŠµë‹ˆë‹¤.
 	}
 	else
 	{
-		printf("\n Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+		printf("\n ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤.");
 	}
 	
 
